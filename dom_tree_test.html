@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive DOM Tree Test for ML Tool</title>
+    
+    <!-- This style tag should be ignored by the algorithm -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+    </style>
+    
+    <!-- This script tag should be ignored by the algorithm -->
+    <script>
+        console.log("This script should be ignored");
+        function testFunction() {
+            return "ignored";
+        }
+    </script>
+</head>
+<body id="main-body" class="test-page">
+    <!-- Comment nodes should be skipped -->
+    
+    <header id="page-header" class="header-main">
+        <h1 id="main-title" class="title primary-title" title="Main Page Title">DOM Tree Algorithm Test Page</h1>
+        <nav id="main-nav" class="navigation" aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="#section1" id="nav-link-1" class="nav-link" title="Go to Section 1">Section 1</a></li>
+                <li><a href="#section2" id="nav-link-2" class="nav-link" title="Go to Section 2">Section 2</a></li>
+                <li><a href="https://example.com" id="external-link" class="nav-link external" title="External Link">External</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content" class="content-wrapper">
+        <!-- Section 1: Text Nodes and Basic Elements -->
+        <section id="section1" class="test-section">
+            <h2 class="section-title">Section 1: Text Nodes and Basic Elements</h2>
+            <p id="para1" class="paragraph">This is a simple paragraph with <strong>bold text</strong> and <em>italic text</em>.</p>
+            <p id="para2">Paragraph with <b>b tag</b>, <i>i tag</i>, <u>u tag</u>, and <s>strikethrough</s>.</p>
+            <p>Text with <sub>subscript</sub> and <sup>superscript</sup> elements.</p>
+            <p>Text with <small>small</small>, <big>big</big>, and <mark>highlighted</mark> text.</p>
+            <p>Code example: <code class="code-snippet">const x = 42;</code></p>
+            <pre id="preformatted" class="code-block">function test() {
+    return "preformatted text";
+}</pre>
+            <blockquote id="quote1" class="quote" title="Famous Quote">
+                <p>This is a blockquote with nested paragraph.</p>
+                <cite>— Author Name</cite>
+            </blockquote>
+        </section>
+
+        <!-- Section 2: Lists and Nested Structures -->
+        <section id="section2" class="test-section">
+            <h2>Section 2: Lists and Nested Structures</h2>
+            <h3>Unordered List</h3>
+            <ul id="unordered-list" class="list">
+                <li id="li1" class="list-item">First item</li>
+                <li id="li2" class="list-item">Second item with <a href="#" class="inline-link">inline link</a></li>
+                <li id="li3" class="list-item">
+                    Third item with nested list:
+                    <ul class="nested-list">
+                        <li>Nested item 1</li>
+                        <li>Nested item 2</li>
+                        <li>Nested item 3 with <span class="highlight">span element</span></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Ordered List</h3>
+            <ol id="ordered-list" class="numbered-list">
+                <li>First numbered item</li>
+                <li>Second numbered item</li>
+                <li>Third numbered item</li>
+            </ol>
+
+            <h3>Definition List</h3>
+            <dl id="definition-list" class="def-list">
+                <dt id="term1" class="term">Term 1</dt>
+                <dd id="def1" class="definition">Definition for term 1</dd>
+                <dt id="term2" class="term">Term 2</dt>
+                <dd id="def2" class="definition">Definition for term 2 with <abbr title="Abbreviation">abbr</abbr></dd>
+            </dl>
+        </section>
+
+        <!-- Section 3: Forms and Input Elements -->
+        <section id="section3" class="test-section">
+            <h2>Section 3: Forms and Input Elements</h2>
+            <form id="test-form" class="form" action="/submit" method="post">
+                <fieldset id="fieldset1" class="form-group">
+                    <legend id="legend1" class="form-legend">Personal Information</legend>
+                    
+                    <label for="name-input" class="form-label">Name:</label>
+                    <input type="text" id="name-input" class="form-input" name="name" value="John Doe" placeholder="Enter your name" aria-label="Name input field">
+                    
+                    <label for="email-input" class="form-label">Email:</label>
+                    <input type="email" id="email-input" class="form-input" name="email" placeholder="your@email.com" aria-label="Email input field">
+                    
+                    <label for="password-input" class="form-label">Password:</label>
+                    <input type="password" id="password-input" class="form-input" name="password" placeholder="Password" aria-label="Password input field">
+                    
+                    <label for="checkbox1" class="form-label">
+                        <input type="checkbox" id="checkbox1" class="form-checkbox" name="subscribe" value="yes" checked aria-label="Subscribe checkbox">
+                        Subscribe to newsletter
+                    </label>
+                    
+                    <label for="radio1" class="form-label">
+                        <input type="radio" id="radio1" class="form-radio" name="gender" value="male" checked aria-label="Male option">
+                        Male
+                    </label>
+                    <label for="radio2" class="form-label">
+                        <input type="radio" id="radio2" class="form-radio" name="gender" value="female" aria-label="Female option">
+                        Female
+                    </label>
+                </fieldset>
+
+                <fieldset id="fieldset2" class="form-group">
+                    <legend>Preferences</legend>
+                    
+                    <label for="select1" class="form-label">Country:</label>
+                    <select id="select1" class="form-select" name="country" aria-label="Country selection">
+                        <option value="">Select a country</option>
+                        <option value="us">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="ca">Canada</option>
+                    </select>
+                    
+                    <label for="textarea1" class="form-label">Comments:</label>
+                    <textarea id="textarea1" class="form-textarea" name="comments" placeholder="Enter your comments here" aria-label="Comments textarea"></textarea>
+                    
+                    <button type="submit" id="submit-btn" class="btn btn-primary" title="Submit form">Submit</button>
+                    <button type="reset" id="reset-btn" class="btn btn-secondary" title="Reset form">Reset</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Section 4: Tables -->
+        <section id="section4" class="test-section">
+            <h2>Section 4: Tables</h2>
+            <table id="data-table" class="table">
+                <caption id="table-caption" class="table-caption">Sample Data Table</caption>
+                <thead id="table-head" class="table-header">
+                    <tr id="header-row" class="table-row">
+                        <th id="th1" class="table-header-cell">Header 1</th>
+                        <th id="th2" class="table-header-cell">Header 2</th>
+                        <th id="th3" class="table-header-cell">Header 3</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body" class="table-body">
+                    <tr id="row1" class="table-row">
+                        <td id="cell1-1" class="table-cell">Data 1-1</td>
+                        <td id="cell1-2" class="table-cell">Data 1-2</td>
+                        <td id="cell1-3" class="table-cell">Data 1-3</td>
+                    </tr>
+                    <tr id="row2" class="table-row">
+                        <td id="cell2-1" class="table-cell">Data 2-1 with <a href="#" class="table-link">link</a></td>
+                        <td id="cell2-2" class="table-cell">Data 2-2</td>
+                        <td id="cell2-3" class="table-cell">Data 2-3</td>
+                    </tr>
+                </tbody>
+                <tfoot id="table-foot" class="table-footer">
+                    <tr id="footer-row" class="table-row">
+                        <td id="footer1" class="table-footer-cell" colspan="3">Table Footer</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <!-- Section 5: Media Elements -->
+        <section id="section5" class="test-section">
+            <h2>Section 5: Media Elements</h2>
+            
+            <h3>Images</h3>
+            <img id="img1" class="image" src="image1.jpg" alt="Test Image 1" title="First test image">
+            <img id="img2" class="image" src="image2.png" alt="Test Image 2" title="Second test image">
+            
+            <h3>Figure with Caption</h3>
+            <figure id="figure1" class="figure">
+                <img id="figure-img" class="figure-image" src="figure.jpg" alt="Figure Image" title="Figure image">
+                <figcaption id="figcaption1" class="figure-caption">This is a figure caption</figcaption>
+            </figure>
+
+            <h3>Audio (should be processed)</h3>
+            <audio id="audio1" class="audio-player" src="audio.mp3" title="Audio file">
+                Your browser does not support audio.
+            </audio>
+
+            <h3>Video (should be processed)</h3>
+            <video id="video1" class="video-player" src="video.mp4" title="Video file">
+                Your browser does not support video.
+            </video>
+
+            <!-- Canvas should be processed -->
+            <canvas id="canvas1" class="canvas" width="200" height="100" title="Canvas element"></canvas>
+        </section>
+
+        <!-- Section 6: Ignored Tags (should be skipped) -->
+        <section id="section6" class="test-section">
+            <h2>Section 6: Ignored Tags</h2>
+            <p>The following elements should be ignored by the algorithm:</p>
+            
+            <!-- Script tag - should be ignored -->
+            <script>
+                console.log("This script should be completely ignored");
+            </script>
+            
+            <!-- Style tag - should be ignored -->
+            <style>
+                .ignored { color: red; }
+            </style>
+            
+            <!-- Noscript tag - should be ignored -->
+            <noscript>
+                <p>This content should be ignored</p>
+            </noscript>
+            
+            <!-- Iframe tag - should be ignored -->
+            <iframe id="iframe1" src="about:blank" title="Ignored iframe">
+                This iframe should be ignored
+            </iframe>
+            
+            <!-- Object tag - should be ignored -->
+            <object id="object1" data="data.pdf" type="application/pdf" title="Ignored object">
+                This object should be ignored
+            </object>
+        </section>
+
+        <!-- Section 7: NOINDEX Tag (special handling) -->
+        <section id="section7" class="test-section">
+            <h2>Section 7: NOINDEX Tag Handling</h2>
+            <p>The NOINDEX tag itself should be skipped, but its children should be relinked to its parent:</p>
+            
+            <div id="noindex-parent" class="noindex-container">
+                <p id="before-noindex">Content before NOINDEX</p>
+                <noindex>
+                    <p id="inside-noindex-1" class="noindex-child">This paragraph is inside NOINDEX and should be relinked to parent</p>
+                    <div id="inside-noindex-2" class="noindex-child">
+                        <span>This div with span is also inside NOINDEX</span>
+                    </div>
+                    <ul id="inside-noindex-3" class="noindex-child">
+                        <li>List item 1 inside NOINDEX</li>
+                        <li>List item 2 inside NOINDEX</li>
+                    </ul>
+                </noindex>
+                <p id="after-noindex">Content after NOINDEX</p>
+            </div>
+        </section>
+
+        <!-- Section 8: HTML5 Semantic Elements -->
+        <section id="section8" class="test-section">
+            <h2>Section 8: HTML5 Semantic Elements</h2>
+            
+            <article id="article1" class="article">
+                <header id="article-header" class="article-header">
+                    <h3 id="article-title">Article Title</h3>
+                    <time id="article-time" class="article-time" datetime="2025-10-22">October 22, 2025</time>
+                </header>
+                <p id="article-content" class="article-text">Article content goes here.</p>
+                <footer id="article-footer" class="article-footer">
+                    <p>Article footer</p>
+                </footer>
+            </article>
+
+            <aside id="sidebar" class="sidebar">
+                <h3>Sidebar Content</h3>
+                <p>This is sidebar content in an aside element.</p>
+            </aside>
+
+            <details id="details1" class="details">
+                <summary id="summary1" class="summary">Click to expand</summary>
+                <p id="details-content">Hidden content that can be expanded</p>
+            </details>
+
+            <dialog id="dialog1" class="dialog" title="Dialog element">
+                <p>This is a dialog element</p>
+            </dialog>
+        </section>
+
+        <!-- Section 9: Special Text Elements -->
+        <section id="section9" class="test-section">
+            <h2>Section 9: Special Text Elements</h2>
+            
+            <p>
+                <abbr id="abbr1" class="abbreviation" title="HyperText Markup Language">HTML</abbr> and
+                <acronym id="acronym1" class="acronym" title="Cascading Style Sheets">CSS</acronym>
+            </p>
+            
+            <p>
+                <address id="address1" class="address">
+                    123 Main Street<br>
+                    City, State 12345<br>
+                    <a href="mailto:test@example.com">test@example.com</a>
+                </address>
+            </p>
+            
+            <p>
+                <kbd id="kbd1" class="keyboard">Ctrl</kbd> + <kbd id="kbd2" class="keyboard">C</kbd> to copy
+            </p>
+            
+            <p>
+                <samp id="samp1" class="sample">Sample output text</samp>
+            </p>
+            
+            <p>
+                <var id="var1" class="variable">x</var> = <var id="var2" class="variable">y</var> + 5
+            </p>
+            
+            <p>
+                <del id="del1" class="deleted" title="Deleted text">Deleted text</del>
+                <ins id="ins1" class="inserted" title="Inserted text">Inserted text</ins>
+            </p>
+            
+            <p>
+                <q id="q1" class="quote-inline" title="Inline quote">This is an inline quote</q>
+            </p>
+            
+            <p>
+                <bdo id="bdo1" class="bidi" dir="rtl">This text is right-to-left</bdo>
+            </p>
+            
+            <p>
+                <ruby id="ruby1" class="ruby">
+                    漢 <rp>(</rp><rt>kan</rt><rp>)</rp>
+                    字 <rp>(</rp><rt>ji</rt><rp>)</rp>
+                </ruby>
+            </p>
+        </section>
+
+        <!-- Section 10: Deeply Nested Structure -->
+        <section id="section10" class="test-section">
+            <h2>Section 10: Deeply Nested Structure</h2>
+            <div id="level1" class="level-1">
+                Level 1
+                <div id="level2" class="level-2">
+                    Level 2
+                    <div id="level3" class="level-3">
+                        Level 3
+                        <div id="level4" class="level-4">
+                            Level 4
+                            <div id="level5" class="level-5">
+                                Level 5
+                                <div id="level6" class="level-6">
+                                    Level 6
+                                    <div id="level7" class="level-7">
+                                        Level 7
+                                        <div id="level8" class="level-8">
+                                            Level 8
+                                            <div id="level9" class="level-9">
+                                                Level 9
+                                                <div id="level10" class="level-10">
+                                                    Level 10 - Deepest level
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Mixed Content and Edge Cases -->
+        <section id="section11" class="test-section">
+            <h2>Section 11: Mixed Content and Edge Cases</h2>
+            
+            <!-- Multiple text nodes with inline elements -->
+            <p id="mixed1">
+                Text before <span class="inline">inline span</span> text between <strong>bold</strong> text after
+            </p>
+            
+            <!-- Empty elements -->
+            <div id="empty-div" class="empty"></div>
+            <p id="empty-para" class="empty"></p>
+            <span id="empty-span" class="empty"></span>
+            
+            <!-- Elements with only whitespace -->
+            <div id="whitespace-div" class="whitespace">   </div>
+            
+            <!-- Self-closing tags -->
+            <br id="br1">
+            <hr id="hr1" class="separator">
+            <wbr id="wbr1">
+            
+            <!-- Multiple classes and attributes -->
+            <div id="multi-attr" class="class1 class2 class3" title="Multiple attributes" aria-label="Accessible label">
+                Element with multiple attributes
+            </div>
+            
+            <!-- Special characters in text -->
+            <p id="special-chars">
+                Special characters: &lt; &gt; &amp; &quot; &apos; © ® ™ € £ ¥
+            </p>
+            
+            <!-- Unicode characters -->
+            <p id="unicode" class="unicode-text">
+                Unicode: 你好 مرحبا Привет 🌟 🎉 ✨
+            </p>
+        </section>
+
+        <!-- Section 12: All Whitelisted Attributes -->
+        <section id="section12" class="test-section">
+            <h2>Section 12: All Whitelisted Attributes Test</h2>
+            <p>Testing all whitelisted attributes: id, class, alt, title, href, src, type, value, placeholder, aria-label, checked</p>
+            
+            <div 
+                id="all-attrs" 
+                class="all-attributes-test"
+                title="Element with all possible attributes"
+                aria-label="Comprehensive attribute test">
+                
+                <a 
+                    id="link-all-attrs" 
+                    class="link-test"
+                    href="https://example.com"
+                    title="Link with attributes"
+                    aria-label="Test link">
+                    Link with href
+                </a>
+                
+                <img 
+                    id="img-all-attrs"
+                    class="image-test"
+                    src="test.jpg"
+                    alt="Image alt text"
+                    title="Image title">
+                
+                <input 
+                    id="input-all-attrs"
+                    class="input-test"
+                    type="text"
+                    value="Input value"
+                    placeholder="Input placeholder"
+                    aria-label="Input aria-label"
+                    checked>
+            </div>
+        </section>
+
+        <!-- Section 13: Comments (should be skipped) -->
+        <section id="section13" class="test-section">
+            <h2>Section 13: Comment Nodes</h2>
+            <!-- This is a comment and should be skipped -->
+            <p id="para-with-comments">
+                Text before comment
+                <!-- Inline comment should be skipped -->
+                Text after comment
+            </p>
+            <!-- 
+                Multi-line comment
+                should also be skipped
+                completely
+            -->
+            <div id="div-with-comments">
+                <!-- Comment at start -->
+                Content
+                <!-- Comment in middle -->
+                More content
+                <!-- Comment at end -->
+            </div>
+        </section>
+
+        <!-- Section 14: SVG and MathML (if supported) -->
+        <section id="section14" class="test-section">
+            <h2>Section 14: SVG and MathML</h2>
+            
+            <svg id="svg1" class="svg-element" width="100" height="100" title="SVG element">
+                <circle cx="50" cy="50" r="40" fill="blue" />
+                <desc id="svg-desc">SVG description</desc>
+            </svg>
+            
+            <math id="math1" class="math-element" title="Math element">
+                <mi>x</mi>
+                <mo>=</mo>
+                <mn>5</mn>
+            </math>
+        </section>
+
+        <!-- Section 15: Rare and Legacy Elements -->
+        <section id="section15" class="test-section">
+            <h2>Section 15: Rare and Legacy Elements</h2>
+            
+            <center id="center1" class="centered">Centered text (legacy)</center>
+            <font id="font1" class="font-element" color="red">Font element (legacy)</font>
+            <marquee id="marquee1" class="marquee">Scrolling text (legacy)</marquee>
+            <blink id="blink1" class="blink">Blinking text (legacy)</blink>
+            <nobr id="nobr1" class="nobr">No break text</nobr>
+            <tt id="tt1" class="teletype">Teletype text</tt>
+            <strike id="strike1" class="strike">Strike through</strike>
+            
+            <menu id="menu1" class="menu">
+                <li>Menu item 1</li>
+                <li>Menu item 2</li>
+            </menu>
+            
+            <dir id="dir1" class="directory">
+                <li>Directory item 1</li>
+                <li>Directory item 2</li>
+            </dir>
+        </section>
+    </main>
+
+    <footer id="page-footer" class="footer">
+        <p id="footer-text" class="footer-content">
+            &copy; 2025 DOM Tree Test. All rights reserved.
+        </p>
+        <nav id="footer-nav" class="footer-navigation" aria-label="Footer navigation">
+            <a href="#" id="footer-link-1" class="footer-link" title="Privacy">Privacy</a> |
+            <a href="#" id="footer-link-2" class="footer-link" title="Terms">Terms</a> |
+            <a href="#" id="footer-link-3" class="footer-link" title="Contact">Contact</a>
+        </nav>
+    </footer>
+</body>
+</html>
