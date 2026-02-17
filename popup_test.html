@@ -2,31 +2,48 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <title>DOM Append Popup Test</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chromium popup blocker repro</title>
 </head>
 <body>
-  <h1>Open 5 tabs via DOM append</h1>
-  <button id="start">Открыть 5 вкладок</button>
+  <h1>Попапы через DOM append (без клика)</h1>
+  <p>
+    Эта страница пытается открыть 5 вкладок через создание/append &lt;a target="_blank"&gt; и .click()
+    <b>автоматически</b>. В Chromium это обычно блокируется.
+  </p>
+
+  <div id="log" style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace;"></div>
 
   <script>
-    document.getElementById("start").addEventListener("click", () => {
-      for (let i = 1; i <= 5; i++) {
+    const logEl = document.getElementById("log");
+    const log = (s) => (logEl.innerHTML += s + "<br>");
 
-        // 1. Создаем ссылку
-        const link = document.createElement("a");
-        link.href = "about:blank";
-        link.target = "_blank";
-        link.textContent = "tab " + i;
+    function openViaDomAppend(i) {
+      const a = document.createElement("a");
+      a.href = "about:blank";
+      a.target = "_blank";
+      a.rel = "opener"; // явно НЕ noopener, чтобы был opener
+      a.textContent = "tab " + i;
 
-        // 2. Добавляем в DOM
-        document.body.appendChild(link);
+      document.body.appendChild(a);
 
-        // 3. Программно кликаем
-        link.click();
-
-        // 4. Удаляем из DOM (не обязательно)
-        document.body.removeChild(link);
+      try {
+        a.click(); // synthetic click без user activation → Chromium обычно блокирует
+        log("Attempt " + i + ": click() fired");
+      } catch (e) {
+        log("Attempt " + i + ": exception " + e);
+      } finally {
+        a.remove();
       }
+    }
+
+    // Важно: запуск НЕ по клику, а автоматически
+    window.addEventListener("DOMContentLoaded", () => {
+      // микрозадержка, чтобы было точно не в жесте пользователя
+      setTimeout(() => {
+        for (let i = 1; i <= 5; i++) openViaDomAppend(i);
+        log("<b>Done.</b> Если Chromium включил блокировку — увидишь иконку blocked popups в адресной строке.");
+      }, 300);
     });
   </script>
 </body>
