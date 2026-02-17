@@ -2,20 +2,30 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Open 5 Tabs</title>
+  <title>DOM Append Popup Test</title>
 </head>
 <body>
-  <h1>Открыть 5 вкладок</h1>
-  <button id="openTabs">Открыть 5 вкладок</button>
+  <h1>Open 5 tabs via DOM append</h1>
+  <button id="start">Открыть 5 вкладок</button>
 
   <script>
-    document.getElementById("openTabs").addEventListener("click", () => {
+    document.getElementById("start").addEventListener("click", () => {
       for (let i = 1; i <= 5; i++) {
-        window.open(
-          "about:blank",
-          "_blank"
-        );
+
+        // 1. Создаем ссылку
+        const link = document.createElement("a");
+        link.href = "about:blank";
+        link.target = "_blank";
+        link.textContent = "tab " + i;
+
+        // 2. Добавляем в DOM
+        document.body.appendChild(link);
+
+        // 3. Программно кликаем
+        link.click();
+
+        // 4. Удаляем из DOM (не обязательно)
+        document.body.removeChild(link);
       }
     });
   </script>
