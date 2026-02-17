@@ -3,48 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chromium popup blocker repro</title>
+  <title>Popup Blocker Test — Method 6 (append)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 20px; }
+    #log { margin-top: 16px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; }
+    button { padding: 10px 14px; }
+  </style>
 </head>
 <body>
-  <h1>Попапы через DOM append (без клика)</h1>
+  <h1>Method 6: reference-to-original-window + DOM append</h1>
   <p>
-    Эта страница пытается открыть 5 вкладок через создание/append &lt;a target="_blank"&gt; и .click()
-    <b>автоматически</b>. В Chromium это обычно блокируется.
+    Автозапуск пытается открыть 5 вкладок через: <code>const w = window</code> → <code>w.document.body.append(a)</code> → <code>a.click()</code>.
+    В Chromium обычно это блокируется, потому что нет user gesture.
   </p>
 
-  <div id="log" style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace;"></div>
+  <button id="manual">Контроль: открыть 5 вкладок по клику (обычно не блокируется)</button>
+
+  <div id="log"></div>
 
   <script>
-    const logEl = document.getElementById("log");
-    const log = (s) => (logEl.innerHTML += s + "<br>");
+    // "reference to the original window"
+    const w = window;
 
-    function openViaDomAppend(i) {
-      const a = document.createElement("a");
-      a.href = "about:blank";
+    const logEl = w.document.getElementById("log");
+    function log(line) {
+      logEl.textContent += line + "\n";
+    }
+
+    function openOne(i, url) {
+      const a = w.document.createElement("a");
+      a.href = url;
       a.target = "_blank";
-      a.rel = "opener"; // явно НЕ noopener, чтобы был opener
-      a.textContent = "tab " + i;
 
-      document.body.appendChild(a);
+      // Важно: НЕ ставим noopener, чтобы сохранить opener-ссылку (если вкладка откроется).
+      a.rel = "opener";
+
+      // DOM creation (append)
+      w.document.body.append(a);
 
       try {
-        a.click(); // synthetic click без user activation → Chromium обычно блокирует
-        log("Attempt " + i + ": click() fired");
+        // Попытка открыть новую вкладку
+        a.click();
+        log(`Attempt ${i}: a.click() called (url=${url})`);
       } catch (e) {
-        log("Attempt " + i + ": exception " + e);
+        log(`Attempt ${i}: exception: ${e}`);
       } finally {
         a.remove();
       }
     }
 
-    // Важно: запуск НЕ по клику, а автоматически
-    window.addEventListener("DOMContentLoaded", () => {
-      // микрозадержка, чтобы было точно не в жесте пользователя
-      setTimeout(() => {
-        for (let i = 1; i <= 5; i++) openViaDomAppend(i);
-        log("<b>Done.</b> Если Chromium включил блокировку — увидишь иконку blocked popups в адресной строке.");
-      }, 300);
+    function openFiveViaMethod6() {
+      // Можно поставить любой URL; пример "example.com" как на тестовых страницах
+      const url = "https://example.com/";
+      for (let i = 1; i <= 5; i++) openOne(i, url);
+      log("Done. Если Chromium заблокировал — появится иконка blocked popups в адресной строке.");
+    }
+
+    // Автозапуск (без user gesture) → Chromium обычно блокирует
+    w.addEventListener("DOMContentLoaded", () => {
+      // Небольшая задержка, чтобы это точно было вне жеста пользователя
+      setTimeout(openFiveViaMethod6, 300);
     });
-  </script>
-</body>
-</html>
+
+    // Кон
