@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Open 5 Tabs</title>
+</head>
+<body>
+  <h1>Открыть 5 вкладок</h1>
+  <button id="openTabs">Открыть 5 вкладок</button>
+
+  <script>
+    document.getElementById("openTabs").addEventListener("click", () => {
+      for (let i = 1; i <= 5; i++) {
+        window.open(
+          "about:blank",
+          "_blank"
+        );
+      }
+    });
+  </script>
+</body>
+</html>
